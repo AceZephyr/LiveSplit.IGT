@@ -86,7 +86,11 @@ namespace LiveSplit.UI.Components {
                             Mark = recvTime;
                             break;
                         case "markigt":
-                            MarkIGT = int.Parse(args[1]) * TimeSpan.TicksPerSecond;
+                            try {
+                                MarkIGT = (long) (double.Parse(args[1]) * TimeSpan.TicksPerSecond);
+                            } catch (FormatException ex) {
+                                // do nothing
+                            }
                             break;
                     }
 
